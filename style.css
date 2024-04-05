@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap");
+h1 {
+  font-family: "Signika Negative", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+body {
+  text-align: center;
+  background-color: white;
+}
+#container {
+  width: 50%;
+  margin: auto;
+  margin-top: 2rem;
+}
+#taskName {
+  text-align: left;
+  padding: 1rem;
+}
+input {
+  padding: 7px 5px;
+  width: 60%;
+}
+#addButton {
+  background-color: black;
+  border: none;
+  padding: 7px 50px;
+  max-width: 100%;
+  font-size: medium;
+  box-shadow: 3px 3px 5px black;
+  color: whitesmoke;
+}
+.li {
+  text-align: left;
+  background-color: whitesmoke;
+  box-shadow: 3px 3px 5px rgb(130, 122, 122);
+
+  padding: 5px 2em;
+  margin-top: 2rem;
+}
