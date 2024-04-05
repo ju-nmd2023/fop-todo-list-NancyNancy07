@@ -4,23 +4,27 @@ h1 {
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
+  color: white;
+}
+.bg-color {
+  height: 100vh;
+  background-image: linear-gradient(to bottom right, black, rgb(32, 32, 87));
 }
 body {
   text-align: center;
-  background-color: white;
 }
 #container {
-  width: 50%;
+  width: 60%;
   margin: auto;
   margin-top: 2rem;
 }
 #taskName {
   text-align: left;
-  padding: 1rem;
+  color: white;
 }
 input {
   padding: 7px 5px;
-  width: 60%;
+  width: 75%;
 }
 #addButton {
   background-color: black;
@@ -28,14 +32,25 @@ input {
   padding: 7px 50px;
   max-width: 100%;
   font-size: medium;
-  box-shadow: 3px 3px 5px black;
+  box-shadow: 1px 1px 5px rgb(130, 122, 122);
+
   color: whitesmoke;
 }
 .li {
+  display: grid;
+  grid-template-columns: 10% 1fr 10%;
+  grid-gap: 1rem;
+  align-items: center;
   text-align: left;
-  background-color: whitesmoke;
   box-shadow: 3px 3px 5px rgb(130, 122, 122);
-
-  padding: 5px 2em;
+  padding: 0px 2em;
   margin-top: 2rem;
+  font-size: 20px;
+}
+.bgColor {
+  background-color: rgb(27, 21, 58);
+  color: white;
+}
+.spacer {
+  height: 10vh;
 }

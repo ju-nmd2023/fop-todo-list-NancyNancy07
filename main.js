@@ -1,19 +1,20 @@
 function doneTask(event) {
   const doneTask = event.target.parentNode.childNodes[1].innerText;
+  event.target.innerText = "✔️";
+
   let todoArray = JSON.parse(localStorage.todo);
+
   const doneTaskIndex = todoArray.findIndex(function (event) {
     return event.name === doneTask;
   });
   if (doneTaskIndex !== -1) {
     todoArray[doneTaskIndex].done = true;
   }
-  event.target.innerText = "✔️";
-
   localStorage.todo = JSON.stringify(todoArray);
   displayTask();
 }
 function removeTask(event) {
-  const taskName = event.target.parentNode.firstChild.innerText;
+  const taskName = event.target.parentNode.childNodes[1].innerText;
   let todoArray = JSON.parse(localStorage.todo);
   // finding the index of selected task
   const taskIndex = todoArray.findIndex(function (event) {
@@ -30,11 +31,20 @@ function displayTask() {
     let todoArray = JSON.parse(localStorage.todo);
     const containerElement = document.getElementById("taskContainer");
     containerElement.innerText = "";
+
     for (let task of todoArray) {
       const divElement = document.createElement("div");
+      divElement.classList.add("bgColor");
+
       divElement.classList.add("li");
+
       const checkButton = document.createElement("button");
-      checkButton.innerText = "⬜";
+      checkButton.classList.add("bgColor");
+      if (task.done === true) {
+        checkButton.innerText = "✔️";
+      } else {
+        checkButton.innerText = "⬜";
+      }
       checkButton.addEventListener("click", doneTask);
       divElement.appendChild(checkButton);
 
@@ -44,6 +54,7 @@ function displayTask() {
 
       const removeButton = document.createElement("button");
       removeButton.innerText = "❌";
+      removeButton.classList.add("bgColor");
       removeButton.addEventListener("click", removeTask);
       divElement.appendChild(removeButton);
 
