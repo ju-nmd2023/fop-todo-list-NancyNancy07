@@ -1,22 +1,29 @@
-function removeTask(event) {
-  const removedTaskName = event.target.parentNode.innerText;
+function doneTask(event) {
+  const doneTask = event.target.parentNode.childNodes[1].innerText;
   let todoArray = JSON.parse(localStorage.todo);
+  const doneTaskIndex = todoArray.findIndex(function (event) {
+    return event.name === doneTask;
+  });
+  if (doneTaskIndex !== -1) {
+    todoArray[doneTaskIndex].done = true;
+  }
+  event.target.innerText = "✔️";
 
-  // Find the index of the task to remove
-  const taskIndex = todoArray.findIndex(
-    (task) => task.name === removedTaskName
-  );
-
-  // Remove the task from the array
+  localStorage.todo = JSON.stringify(todoArray);
+  displayTask();
+}
+function removeTask(event) {
+  const taskName = event.target.parentNode.firstChild.innerText;
+  let todoArray = JSON.parse(localStorage.todo);
+  // finding the index of selected task
+  const taskIndex = todoArray.findIndex(function (event) {
+    return event.name === taskName;
+  });
   if (taskIndex !== -1) {
     todoArray.splice(taskIndex, 1);
-
-    // Update the localStorage
-    localStorage.todo = JSON.stringify(todoArray);
-
-    // Update the display
-    displayTask();
   }
+  localStorage.todo = JSON.stringify(todoArray);
+  displayTask();
 }
 function displayTask() {
   if (localStorage.todo !== undefined) {
@@ -24,18 +31,23 @@ function displayTask() {
     const containerElement = document.getElementById("taskContainer");
     containerElement.innerText = "";
     for (let task of todoArray) {
-      const listElement = document.createElement("div");
-      listElement.innerText = task.name;
-      listElement.classList.add("li");
-      containerElement.appendChild(listElement);
-
+      const divElement = document.createElement("div");
+      divElement.classList.add("li");
       const checkButton = document.createElement("button");
-      checkButton.innerText = "✔️";
-      listElement.appendChild(checkButton);
+      checkButton.innerText = "⬜";
+      checkButton.addEventListener("click", doneTask);
+      divElement.appendChild(checkButton);
+
+      const listElement = document.createElement("p");
+      listElement.innerText = task.name;
+      divElement.appendChild(listElement);
+
       const removeButton = document.createElement("button");
       removeButton.innerText = "❌";
       removeButton.addEventListener("click", removeTask);
-      listElement.appendChild(removeButton);
+      divElement.appendChild(removeButton);
+
+      containerElement.appendChild(divElement);
     }
 
     const inputElement = document.getElementById("inputValue");
@@ -48,17 +60,19 @@ function saveTask() {
   const inputElement = document.getElementById("inputValue");
   const inputValue = inputElement.value;
   let todoTask = {
-    name: inputElement.value,
+    name: inputValue,
     done: false,
   };
-
   if (localStorage.todo === undefined) {
     localStorage.todo = JSON.stringify([]);
   }
-  let todoArray = JSON.parse(localStorage.todo);
-  todoArray.push(todoTask);
-  localStorage.todo = JSON.stringify(todoArray);
-  inputElement.value = "";
+
+  if (localStorage.todo !== undefined && inputElement.value !== "") {
+    let todoArray = JSON.parse(localStorage.todo);
+    todoArray.push(todoTask);
+    localStorage.todo = JSON.stringify(todoArray);
+    inputElement.value = "";
+  }
 
   displayTask();
 }
