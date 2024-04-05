@@ -8,7 +8,7 @@ h1 {
 }
 .bg-color {
   height: 100vh;
-  background-image: linear-gradient(to bottom right, black, rgb(32, 32, 87));
+  background-image: linear-gradient(to bottom right, black, rgb(3 57 51));
 }
 body {
   text-align: center;
@@ -24,7 +24,8 @@ body {
 }
 input {
   padding: 7px 5px;
-  width: 75%;
+  width: 74%;
+  font-size: 18px;
 }
 #addButton {
   background-color: black;
@@ -33,7 +34,7 @@ input {
   max-width: 100%;
   font-size: medium;
   box-shadow: 1px 1px 5px rgb(130, 122, 122);
-
+  font-size: 18px;
   color: whitesmoke;
 }
 .li {
@@ -48,7 +49,7 @@ input {
   font-size: 20px;
 }
 .bgColor {
-  background-color: rgb(27, 21, 58);
+  background-color: rgb(3 57 51);
   color: white;
 }
 .spacer {
