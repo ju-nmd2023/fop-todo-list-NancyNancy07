@@ -25,7 +25,10 @@ body {
 input {
   padding: 7px 5px;
   width: 74%;
-  font-size: 18px;
+  font-size: 16px;
+}
+.lineThrough {
+  text-decoration: line-through;
 }
 #addButton {
   background-color: black;

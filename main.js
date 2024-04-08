@@ -13,6 +13,7 @@ function doneTask(event) {
   localStorage.todo = JSON.stringify(todoArray);
   displayTask();
 }
+
 function removeTask(event) {
   const taskName = event.target.parentNode.childNodes[1].innerText;
   let todoArray = JSON.parse(localStorage.todo);
@@ -50,6 +51,9 @@ function displayTask() {
 
       const listElement = document.createElement("p");
       listElement.innerText = task.name;
+      if (task.done === true) {
+        listElement.classList.add("lineThrough");
+      }
       divElement.appendChild(listElement);
 
       const removeButton = document.createElement("button");
