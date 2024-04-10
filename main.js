@@ -1,26 +1,23 @@
 function doneTask(event) {
   const doneTask = event.target.parentNode.childNodes[1].innerText;
   // event.target.innerText = "✔️";
- 
   let todoArray = JSON.parse(localStorage.todo);
-
-  for (let task of todoArray) {
-    if (task.name === doneTask) {
-      // update(task);
-      task.done = true;
-    }
-  }
-  // const doneTaskIndex = todoArray.findIndex(function (event) {
-  //   return event.name === doneTask;
-  // });
-  // if (doneTaskIndex !== -1) {
-  //   todoArray[doneTaskIndex].done = true;
+  // for (let task of todoArray) {
+  //   if (task.name === doneTask) {
+  //     task.completed = true;
+  //   }
   // }
+  let doneTaskIndex;
+  todoArray.findIndex(function (event, index) {
+    if (event.name === doneTask) {
+      return (doneTaskIndex = index);
+    }
+  });
+  if (doneTaskIndex !== -1) {
+    todoArray[doneTaskIndex].completed = true;
+  }
   localStorage.todo = JSON.stringify(todoArray);
   displayTask();
-}
-function update(event) {
-  event.done = true;
 }
 function removeTask(event) {
   const taskName = event.target.parentNode.childNodes[1].innerText;
@@ -49,7 +46,7 @@ function displayTask() {
 
       const checkButton = document.createElement("button");
       checkButton.classList.add("bgColor");
-      if (task.done === true) {
+      if (task.completed === true) {
         checkButton.innerText = "✔️";
       } else {
         checkButton.innerText = "⬜";
@@ -59,7 +56,7 @@ function displayTask() {
 
       const listElement = document.createElement("p");
       listElement.innerText = task.name;
-      if (task.done === true) {
+      if (task.completed === true) {
         listElement.classList.add("lineThrough");
       }
       divElement.appendChild(listElement);
@@ -84,7 +81,7 @@ function saveTask() {
   const inputValue = inputElement.value;
   let todoTask = {
     name: inputValue,
-    done: false,
+    completed: false,
   };
   if (localStorage.todo === undefined) {
     localStorage.todo = JSON.stringify([]);
