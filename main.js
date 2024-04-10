@@ -1,19 +1,27 @@
 function doneTask(event) {
   const doneTask = event.target.parentNode.childNodes[1].innerText;
-  event.target.innerText = "✔️";
-
+  // event.target.innerText = "✔️";
+ 
   let todoArray = JSON.parse(localStorage.todo);
 
-  const doneTaskIndex = todoArray.findIndex(function (event) {
-    return event.name === doneTask;
-  });
-  if (doneTaskIndex !== -1) {
-    todoArray[doneTaskIndex].done = true;
+  for (let task of todoArray) {
+    if (task.name === doneTask) {
+      // update(task);
+      task.done = true;
+    }
   }
+  // const doneTaskIndex = todoArray.findIndex(function (event) {
+  //   return event.name === doneTask;
+  // });
+  // if (doneTaskIndex !== -1) {
+  //   todoArray[doneTaskIndex].done = true;
+  // }
   localStorage.todo = JSON.stringify(todoArray);
   displayTask();
 }
-
+function update(event) {
+  event.done = true;
+}
 function removeTask(event) {
   const taskName = event.target.parentNode.childNodes[1].innerText;
   let todoArray = JSON.parse(localStorage.todo);
