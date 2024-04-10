@@ -21,10 +21,14 @@ function doneTask(event) {
 }
 function removeTask(event) {
   const taskName = event.target.parentNode.childNodes[1].innerText;
+
   let todoArray = JSON.parse(localStorage.todo);
   // finding the index of selected task
-  const taskIndex = todoArray.findIndex(function (event) {
-    return event.name === taskName;
+  let taskIndex;
+  todoArray.findIndex(function (event, index) {
+    if (event.name === doneTask) {
+      return (taskIndex = index);
+    }
   });
   if (taskIndex !== -1) {
     todoArray.splice(taskIndex, 1);
