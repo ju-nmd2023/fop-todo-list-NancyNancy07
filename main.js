@@ -1,6 +1,6 @@
 function doneTask(event) {
   const doneTask = event.target.parentNode.childNodes[1].innerText;
-  // event.target.innerText = "✔️";
+ 
   let todoArray = JSON.parse(localStorage.todo);
   // for (let task of todoArray) {
   //   if (task.name === doneTask) {
