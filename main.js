@@ -26,7 +26,7 @@ function removeTask(event) {
   // finding the index of selected task
   let taskIndex;
   todoArray.findIndex(function (event, index) {
-    if (event.name === doneTask) {
+    if (event.name === taskName) {
       return (taskIndex = index);
     }
   });
@@ -74,10 +74,10 @@ function displayTask() {
       containerElement.appendChild(divElement);
     }
 
-    const inputElement = document.getElementById("inputValue");
-    const task = inputElement.value;
-    const taskIndex = todoArray.indexOf(task);
-    todoArray.splice(taskIndex, 1);
+    // const inputElement = document.getElementById("inputValue");
+    // const task = inputElement.value;
+    // const taskIndex = todoArray.indexOf(task);
+    // todoArray.splice(taskIndex, 1);
   }
 }
 function saveTask() {
