@@ -1,24 +1,39 @@
-function doneTask(event) {
-  const doneTask = event.target.parentNode.childNodes[1].innerText;
- 
-  let todoArray = JSON.parse(localStorage.todo);
-  // for (let task of todoArray) {
-  //   if (task.name === doneTask) {
-  //     task.completed = true;
-  //   }
-  // }
-  let doneTaskIndex;
-  todoArray.findIndex(function (event, index) {
-    if (event.name === doneTask) {
-      return (doneTaskIndex = index);
-    }
-  });
-  if (doneTaskIndex !== -1) {
-    todoArray[doneTaskIndex].completed = true;
-  }
-  localStorage.todo = JSON.stringify(todoArray);
-  displayTask();
-}
+// function doneTask() {
+//   const doneTaskContainer = document.getElementById("taskContainer");
+//   const doneTaskElement = this.parentNode;
+//   const taskIndex = Array.from(doneTaskContainer.children).indexOf(
+//     doneTaskElement
+//   );
+
+//   let todoArray = JSON.parse(localStorage.todo);
+//   todoArray.findIndex(function (event, index) {
+//     if (taskIndex === index) {
+//       event.completed = true;
+//     }
+//   });
+
+//   // for (let index in todoArray) {
+//   //   console.log(typeof index);
+//   //   if (index === taskIndex) {
+//   //     console.log("done");
+//   //   }
+//   // }
+//   // for (let i = 0; i < todoArray.length; i++) {
+//   //   console.log(i);
+
+//   //   if (todoArray[i] === doneTask) {
+//   //     // Comparing the task name
+//   //     todoArray[i].completed = true;
+//   //   }
+//   // }
+//   // let doneTaskIndex;
+
+//   // if (doneTaskIndex !== -1) {
+//   //   todoArray[doneTaskIndex].completed = true;
+//   // }
+//   localStorage.todo = JSON.stringify(todoArray);
+//   displayTask();
+// }
 function removeTask(event) {
   const taskName = event.target.parentNode.childNodes[1].innerText;
 
@@ -55,7 +70,12 @@ function displayTask() {
       } else {
         checkButton.innerText = "⬜";
       }
-      checkButton.addEventListener("click", doneTask);
+      //checkButton.addEventListener("click", doneTask);
+      checkButton.addEventListener("click", () => {
+        task.completed = !task.completed;
+        localStorage.todo = JSON.stringify(todoArray);
+        displayTask();
+      });
       divElement.appendChild(checkButton);
 
       const listElement = document.createElement("p");
@@ -68,7 +88,13 @@ function displayTask() {
       const removeButton = document.createElement("button");
       removeButton.innerText = "❌";
       removeButton.classList.add("bgColor");
-      removeButton.addEventListener("click", removeTask);
+      // removeButton.addEventListener("click", removeTask);
+      removeButton.addEventListener("click", (event) => {
+        let removeIndex = todoArray.indexOf(task);
+        todoArray.splice(removeIndex, 1);
+        localStorage.todo = JSON.stringify(todoArray);
+        displayTask();
+      });
       divElement.appendChild(removeButton);
 
       containerElement.appendChild(divElement);
