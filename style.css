@@ -5,6 +5,7 @@ h1 {
   font-weight: 700;
   font-style: normal;
   color: white;
+  margin-top: 5rem;
 }
 .bg-color {
   height: 100vh;
@@ -50,7 +51,6 @@ input {
   box-shadow: 3px 3px 5px rgb(130, 122, 122);
   padding: 0px 2em;
   margin-top: 2rem;
-  font-size: 20px;
 }
 .bgColor {
   background-color: rgb(3 57 51);
