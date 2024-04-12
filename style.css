@@ -11,6 +11,7 @@ h1 {
   background-image: linear-gradient(to bottom right, black, rgb(3 57 51));
 }
 body {
+  font-family: sans-serif;
   text-align: center;
 }
 #container {
